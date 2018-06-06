@@ -1,0 +1,24 @@
+= form_for [:admin, page], html: { class: 'form-horizontal', role: 'form' } do |form|
+  - if page.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(page.errors.count, "error")
+        prohibited this page from being saved:
+      %ul
+        - page.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :title, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_field :title, class: 'form-control'
+  .form-group
+    = form.label :slug, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_field :slug, class: 'form-control'
+  .form-group
+    = form.label :body, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_area :body, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = form.submit class: 'btn btn-default'

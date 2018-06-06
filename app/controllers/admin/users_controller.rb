@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::AdminController
   def index
-    @users = User.order('name ASC')
+    @users = User.order('last_name ASC')
   end
 
   def show

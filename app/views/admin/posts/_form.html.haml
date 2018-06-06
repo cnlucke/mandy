@@ -1,0 +1,57 @@
+= form_for [:admin, post], html: { class: 'form-horizontal', role: 'form' } do |form|
+  - if post.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(post.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - post.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :feed_id, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.collection_select :feed_id, @feeds.order(:title),:id,:title, include_blank: true
+  .form-group
+    = form.label :author_id, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.number_field :author_id, class: 'form-control'
+  .form-group
+    = form.label :slug, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_field :slug, class: 'form-control'
+  .form-group
+    = form.label :title, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_field :title, class: 'form-control'
+  .form-group
+    = form.label :body, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = form.text_area :body, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = form.submit class: 'btn btn-default'
+
+
+-# = form_for [:admin, @manager], html: { class: 'form-horizontal', role: 'form' } do |form|
+-#   .form-group
+-#     = form.label :email, class: 'col-sm-2 control-label'
+-#     .col-sm-10
+-#       = form.email_field :email, class: 'form-control'
+-#   .form-group
+-#     = form.label :password, class: 'col-sm-2 control-label'
+-#     .col-sm-10
+-#       = form.password_field :password, class: 'form-control'
+-#   .form-group
+-#     = form.label :password_confirmation, class: 'col-sm-2 control-label'
+-#     .col-sm-10
+-#       = form.password_field :password_confirmation, class: 'form-control'
+-#   - if current_manager.admin?
+-#     .form-group
+-#       .col-sm-offset-2.col-sm-10
+-#         .checkbox
+-#           %label
+-#             = form.check_box :admin, disabled: @manager == current_manager
+-#             Administrative Access
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = form.submit class: 'btn btn-default'

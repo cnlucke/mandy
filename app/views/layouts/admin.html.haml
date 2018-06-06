@@ -1,0 +1,36 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %link{:href => "../../assets/ico/favicon.png", :rel => "shortcut icon"}/
+    %title Mandy Ream Administration
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => admin_dashboard_path} Home
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              = link_to 'Users', admin_users_path
+            %li
+              = link_to 'Pages', admin_pages_path
+            %li
+              = link_to 'Feeds', admin_feeds_path
+            %li
+              = link_to 'Posts', admin_posts_path
+            %li
+              = link_to 'Log Out', admin_session_path, method: :delete
+    .container.main-content
+      - flash.each do |type, msg|
+        %div{class: "alert alert-#{type}"}
+          %strong= msg
+      = yield

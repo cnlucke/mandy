@@ -6,7 +6,6 @@
       %th Title
       %th Slug
       %th Body
-      %th Type
       %th{colspan: "3"}
   %tbody
     - @pages.each do |page|
@@ -14,7 +13,6 @@
         %td= page.title
         %td= page.slug
         %td= page.body
-        %td= page.type
         %td= link_to 'Show', page
         %td= link_to 'Edit', edit_page_path(page)
         %td= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' }

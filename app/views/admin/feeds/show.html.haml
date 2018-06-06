@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @feed.title
+%p
+  %strong Slug:
+  = @feed.slug
+%p
+  %strong Body:
+  = @feed.body
+= link_to 'Edit', edit_admin_feed_path(@feed)
+|
+= link_to 'Back', admin_feeds_path

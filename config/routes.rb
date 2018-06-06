@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :comments
-  resources :posts
-  resources :feeds
-  resources :pages
+  resources :pages, only: [:index, :show, :new, :destroy]
+  resources :feeds, only: [:index, :show, :new, :destroy]
+  resources :posts, only: [:show, :new, :destroy]
+  resources :comments, only: [:show, :new, :destroy]
 
   namespace :admin do
     get '/', to: 'static#dashboard', as: :dashboard
     resource  :session, only: %w(new create destroy)
     resources :users, only: %w(index show edit update)
-    resources :pages # can add/delete pages
+    resources :pages
     resources :feeds
     resources :posts
   end
