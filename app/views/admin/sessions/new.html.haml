@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-4
+    = form_tag admin_session_path, class: 'col-md-4' do
+      %h3 Login to your account
+      %hr/
+      .form-group
+        .controls
+          = text_field_tag :email, params[:email], placeholder: 'Email', class: 'form-control'
+      .form-group
+        .controls
+          = password_field_tag :password, '', placeholder: 'Password', class: 'form-control'
+      .form-group
+        .controls
+          .actions= submit_tag "Sign In", class: 'btn btn-primary form-control'
+      %hr/
+    .col-md-4

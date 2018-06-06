@@ -1,0 +1,67 @@
+%ol.breadcrumb
+  %li= link_to 'Home', admin_dashboard_path
+  %li= link_to 'Users', admin_users_path
+  %li.active= @user.email
+
+.panel.panel-default
+  .panel-heading Actions
+  .panel-body
+    = link_to 'Edit', edit_admin_user_path(@user)
+    |
+    = link_to 'Albums', admin_user_albums_path(@user)
+    |
+    = link_to 'Orders', admin_orders_path(user_id: @user)
+    |
+    = link_to 'Storage Subscriptions', admin_user_subscriptions_path(user_id: @user)
+    |
+    = link_to 'Storage Allotments', admin_user_storage_allotments_path(user_id: @user)
+    |
+    = link_to 'Print Allotments', admin_user_print_allotments_path(user_id: @user)
+
+.panel.panel-default
+  .panel-heading Basic Information
+  %ul.list-group
+    %li.list-group-item Email: #{@user.email}
+    %li.list-group-item First name: #{@user.first_name}
+    %li.list-group-item Last name: #{@user.last_name}
+    %li.list-group-item Signed up: #{@user.created_at}
+    %li.list-group-item
+      Selected Print Plan for Renewal:
+      - if @user.selected_print_plan.present?
+        = @user.selected_print_plan.title
+        = link_to 'Disable',
+                  cancel_selected_print_plan_admin_user_path(@user),
+                  method: :put,
+                  data: { confirm: 'Are you sure you want to cancel auto-renewal?' }
+      - else
+        None
+    %li.list-group-item Storage Quota: #{number_to_human_size @user.storage_total}
+    %li.list-group-item Storage Used: #{number_to_human_size @user.storage_used}
+    %li.list-group-item Unprinted Prints Total: #{@user.prints_total}
+    %li.list-group-item Unprinted Prints Used: #{@user.prints_used}
+    %li.list-group-item Default Print Finish: #{@user.default_print_finish.try(:name)}
+    %li.list-group-item Default Print Size: #{@user.default_print_size.try(:name)}
+.panel.panel-default
+  .panel-heading Shipping Information
+  %ul.list-group
+    %li.list-group-item Street Address 1: #{@user.shipping_street1}
+    %li.list-group-item Street Address 2: #{@user.shipping_street1}
+    %li.list-group-item City: #{@user.shipping_city}
+    %li.list-group-item State: #{@user.shipping_state}
+    %li.list-group-item Zip: #{@user.shipping_zip}
+    %li.list-group-item Country: #{@user.shipping_country}
+    %li.list-group-item Phone: #{@user.shipping_phone}
+.panel.panel-default
+  .panel-heading Billing Information
+  %ul.list-group
+    %li.list-group-item Card Type: #{@user.card_type}
+    %li.list-group-item Card Number: *#{@user.card_last_four}
+    %li.list-group-item Card Expiration: #{@user.card_expires_on}
+    %li.list-group-item Street Address 1: #{@user.billing_street1}
+    %li.list-group-item Street Address 2: #{@user.billing_street2}
+    %li.list-group-item City: #{@user.billing_city}
+    %li.list-group-item State: #{@user.billing_state}
+    %li.list-group-item Zip: #{@user.billing_zip}
+    %li.list-group-item Country: #{@user.billing_country}
+    %li.list-group-item Phone: #{@user.billing_phone}
+= render_notes_for @user

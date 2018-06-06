@@ -1,0 +1,26 @@
+= form_with(model: post, local: true) do |form|
+  - if post.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(post.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - post.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :feed_id
+    = form.text_field :feed_id
+  .field
+    = form.label :author_id
+    = form.number_field :author_id
+  .field
+    = form.label :slug
+    = form.text_field :slug
+  .field
+    = form.label :title
+    = form.text_field :title
+  .field
+    = form.label :body
+    = form.text_area :body
+  .actions
+    = form.submit

@@ -1,0 +1,24 @@
+%p#notice= notice
+%h1 Comments
+%table
+  %thead
+    %tr
+      %th Author
+      %th Parent
+      %th Parent type
+      %th Slug
+      %th Content
+      %th{colspan: "3"}
+  %tbody
+    - @comments.each do |comment|
+      %tr
+        %td= comment.author_id
+        %td= comment.parent_id
+        %td= comment.parent_type
+        %td= comment.slug
+        %td= comment.content
+        %td= link_to 'Show', comment
+        %td= link_to 'Edit', edit_comment_path(comment)
+        %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Comment', new_comment_path

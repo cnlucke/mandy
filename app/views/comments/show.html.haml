@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Author:
+  = @comment.author_id
+%p
+  %strong Parent:
+  = @comment.parent_id
+%p
+  %strong Parent type:
+  = @comment.parent_type
+%p
+  %strong Slug:
+  = @comment.slug
+%p
+  %strong Content:
+  = @comment.content
+= link_to 'Edit', edit_comment_path(@comment)
+|
+= link_to 'Back', comments_path
