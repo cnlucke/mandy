@@ -11,17 +11,19 @@ class Admin::PostsController < Admin::AdminController
   def new
     @post = Post.new
     @feeds = Feed.all
+    @users = User.all
   end
 
   def edit
     @feeds = Feed.all
+    @users = User.all
   end
 
   def create
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to admin_post_url, notice: 'Post was successfully created.'
+      redirect_to admin_post_url(@post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -29,7 +31,7 @@ class Admin::PostsController < Admin::AdminController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_post_url, notice: 'Post was successfully updated.'
+      redirect_to admin_post_url(@post), notice: 'Post was successfully updated.'
     else
       render :edit
     end

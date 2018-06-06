@@ -1,0 +1,15 @@
+%p
+  %strong Author:
+  = link_to @comment.author.full_name, admin_user_path(@comment.author)
+%p
+  %strong Parent:
+  = link_to @comment.parent.slug, polymorphic_path([:admin, @comment.parent])
+%p
+  %strong Slug:
+  = @comment.slug
+%p
+  %strong Content:
+  = @comment.content.truncate(30)
+= link_to 'Edit', edit_admin_comment_path(@comment)
+|
+= link_to 'Back', admin_comments_path(parent: @comment.parent.id)

@@ -1,0 +1,7 @@
+%tr
+  %td= link_to comment.author.full_name, admin_user_path(comment.author)
+  %td= link_to comment.parent.slug, polymorphic_path([:admin, comment.parent])
+  %td= comment.content.truncate(30)
+  %td= link_to 'Show', [:admin, comment]
+  %td= link_to 'Edit', edit_admin_comment_path(comment)
+  %td= link_to 'Destroy', [:admin, comment], method: :delete, data: { confirm: 'Are you sure?' }

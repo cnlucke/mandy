@@ -1,0 +1,3 @@
+%h1 New Comment on #{@parent.slug}
+= render 'form', {comment: @comment, parent: @parent}
+= link_to 'Back', admin_comments_path(parent: @parent.id)

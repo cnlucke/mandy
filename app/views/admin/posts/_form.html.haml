@@ -14,7 +14,8 @@
   .form-group
     = form.label :author_id, class: 'col-sm-2 control-label'
     .col-sm-10
-      = form.number_field :author_id, class: 'form-control'
+      = form.collection_select :author_id, @users.order(:first_name), :id, :full_name, include_blank: true
+      -# = form.number_field :author_id, class: 'form-control'
   .form-group
     = form.label :slug, class: 'col-sm-2 control-label'
     .col-sm-10

@@ -1,0 +1,12 @@
+%h1 Comments for #{@comments.first.parent.title}
+%table.table
+  %thead
+    %tr
+      %th Author
+      %th Parent
+      %th Content
+      %th{colspan: "3"}
+  %tbody
+    = render partial: "comment", collection: @comments
+%br/
+= link_to 'New Comment', new_admin_comment_path(parent: @comments.first.parent_id, type: @comments.first.parent_type)

@@ -19,7 +19,7 @@ class Admin::FeedsController < Admin::AdminController
     @feed = Feed.new(feed_params)
 
     if @feed.save
-      redirect_to admin_feed_url, notice: 'Feed was successfully created.'
+      redirect_to admin_feed_url(@feed), notice: 'Feed was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::FeedsController < Admin::AdminController
 
   def update
     if @feed.update(feed_params)
-      redirect_to admin_feed_url, notice: 'Feed was successfully updated.'
+      redirect_to admin_feed_url(@feed), notice: 'Feed was successfully updated.'
     else
       render :edit
     end
