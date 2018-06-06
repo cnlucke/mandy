@@ -10,14 +10,14 @@ class Admin::CommentsController < Admin::AdminController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @parent.comments.new
   end
 
   def edit
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @parent.comments.new(comment_params)
 
     if @comment.save
       redirect_to admin_comment_url, notice: 'Comment was successfully created.'

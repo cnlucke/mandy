@@ -1,4 +1,7 @@
-%h1 Comments for #{@comments.first.parent.title}
+- if @comments.count > 0
+  %h1 Comments for #{@comments.first.parent.title}
+- else
+  %h1 Comments
 %table.table
   %thead
     %tr

@@ -7,7 +7,7 @@
 %p
   %strong Body:
   = @page.body
-= link_to "Comments", {controller: "admin/comments", action: "index", parent: @page.id }
+= link_to "Comments", {controller: "admin/comments", action: "index", parent: @post.id, type: @post.class }
 |
 = link_to 'Edit', edit_admin_page_path(@page)
 |

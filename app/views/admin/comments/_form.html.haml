@@ -14,7 +14,7 @@
   .form-group
     = form.label "Parent", class: 'col-sm-2 control-label'
     .col-sm-10
-      = "#{parent.slug}"
+      = link_to "#{parent.slug}", polymorphic_path([:admin, parent])
   .form-group
     = form.label :slug, class: 'col-sm-2 control-label'
     .col-sm-10
